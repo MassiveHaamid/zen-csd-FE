@@ -68,7 +68,7 @@ const Mentor = () => {
                             <div className="flexCont">
                                 <div className='flexCont__data'>
                                     <div className="title weight-500">
-                                        Student-B47-Tamil
+                                        Student-B51-Tamil
                                     </div>
                                     <div className="row 
                                 d-flex 

@@ -958,302 +958,302 @@ export const roadMapData = [
 export const leaderBoardData = [
     {
         rank: 1,
-        name: "Udhayasooriyan",
-        batch: "B-47WD",
+        name: "Haamid",
+        batch: "B-51WD",
         learning: "89.76"
     },
     {
         rank: 2,
         name: "Hema",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "79.14"
     },
     {
         rank: 3,
         name: "Boobathi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "77.34"
     },
     {
         rank: 4,
         name: "Anushree",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "76.55"
     },
     {
         rank: 5,
         name: "Indira",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "66.03"
     },
     {
         rank: 6,
         name: "Shanthi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "64.66"
     },
     {
         rank: 7,
         name: "Thiveeya",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "64.66"
     },
     {
         rank: 8,
         name: "Lalitha",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "63.97"
     },
     {
         rank: 9,
         name: "Elilarasi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "60.69"
     },
     {
         rank: 10,
         name: "Abinaya",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "57.41"
     },
     {
         rank: 11,
         name: "Santhosh",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "55.69"
     },
     {
         rank: 12,
         name: "Lakshmi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "55.17"
     },
     {
         rank: 13,
         name: "Hema",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "54.66"
     },
     {
         rank: 14,
         name: "Gokul",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "52.93"
     },
     {
         rank: 15,
         name: "Kavi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "52.76"
     },
     {
         rank: 16,
         name: "Saveen",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "50.69"
     },
     {
         rank: 17,
         name: "renugadevi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "47.93"
     },
     {
         rank: 18,
         name: "SURYA",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "47.59"
     },
     {
         rank: 19,
         name: "Inturi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "45.52"
     },
     {
         rank: 20,
         name: "Ezhil",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "45.17"
     },
     {
         rank: 21,
         name: "Mohammed",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "42.41"
     },
     {
         rank: 22,
         name: "sakthidhasan",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "41.21"
     },
     {
         rank: 23,
         name: "Narmada",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "40.86"
     },
     {
         rank: 24,
         name: "SARANRAJ",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "34.83"
     },
     {
         rank: 25,
         name: "Manikandan",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "33.62"
     },
     {
         rank: 26,
         name: "Sathish",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "32.24"
     },
     {
         rank: 27,
         name: "Babu",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "30.00"
     },
     {
         rank: 28,
         name: "Pavithran",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "29.14"
     },
     {
         rank: 29,
         name: "Ramya",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "28.62"
     },
     {
         rank: 30,
         name: "VALLATHAN",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "28.28"
     },
     {
         rank: 31,
         name: "pavi",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "27.76"
     },
     {
         rank: 32,
         name: "Yadeeswari",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "26.03"
     },
     {
         rank: 33,
         name: "vengatesh",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "26.03"
     },
     {
         rank: 34,
         name: "Divakar",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "25.69"
     },
     {
         rank: 35,
         name: "Elavarasan",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "23.10"
     },
     {
         rank: 36,
         name: "Vijay",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "22.41"
     },
     {
         rank: 37,
         name: "SATHYA",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "21.55"
     },
     {
         rank: 38,
         name: "Poovarasan",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "21.38"
     },
     {
         rank: 39,
         name: "Indhira",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "17.93"
     },
     {
         rank: 40,
         name: "Vignesh",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "17.59"
     },
     {
         rank: 41,
         name: "Suhail",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "17.41"
     },
     {
         rank: 42,
         name: "Aravindh",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "15.86"
     },
     {
         rank: 43,
         name: "Ajithkumar",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "13.62"
     },
     {
         rank: 44,
         name: "Meyazhagan",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "8.62"
     },
     {
         rank: 45,
         name: "Maria",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "7.93"
     },
     {
         rank: 46,
         name: "anand",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "6.90"
     },
     {
         rank: 47,
         name: "DHEEPAK",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "6.55"
     },
     {
         rank: 48,
         name: "shathap",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "5.86"
     },
     {
         rank: 49,
         name: "Nithya",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "5.17"
     },
     {
         rank: 50,
         name: "Micheal",
-        batch: "B-47WD",
+        batch: "B-51WD",
         learning: "4.14"
     },
 ];
