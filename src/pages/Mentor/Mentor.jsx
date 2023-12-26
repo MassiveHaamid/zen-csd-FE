@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import "./mentor.css";
-import TaskEvalkuationURL from '../../components/taskEvaluation/TaskEvalkuationURL';
+import TaskEvalkuationURL from '../../components/taskEvalution/TaskEvalkuationURL';
 import { useContext } from 'react';
-import DataContext from '../../context/DataContext';
+import DataContext from '..//../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from 'formik';
 import RequestField from '../../components/textField/RequestField';

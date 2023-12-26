@@ -83,13 +83,6 @@ const Login = () => {
               >
                 Not Register? Sign up
               </Link>
-              <button
-                className='btn mt-2 instruction forgot'
-                data-bs-toggle='modal'
-                data-bs-target='#myModal'
-              >
-                Demo Credentials
-              </button>
             </div>
           </div>
         </div>
@@ -112,10 +105,8 @@ const Login = () => {
             </div>
             <div className='modal-body'>
               for Student Login use below ID or create new one: <br />
-              <span className='mx-5'> Email : usraising@gmail.com</span> <br />
-              <span className='mx-5'> password : suriya@123</span> <br />
-              <span className='mx-5'> Email : usraise@live.com</span> <br />
-              <span className='mx-5'> password : suriya@123</span> <br />
+              <span className='mx-5'> Email : reshma9298h@gmail.com</span> <br />
+              <span className='mx-5'> password : reshu@123</span> <br />
               <hr />
               for Mentor Login use below ID
               <br />
