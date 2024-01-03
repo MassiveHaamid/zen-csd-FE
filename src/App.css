@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   /* color mode*/
-  --theme: #4b0dba;
+  --theme: #b3b5c0;
   --secondary: #3b4286;
   --green: #06aa44;
   --gray: #80808059;
@@ -25,7 +25,7 @@
   border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-  background-color: #2d2d2d;
+  background-color: #f9fbfd;
 }
 body {
   background-color: #f9fbfd;

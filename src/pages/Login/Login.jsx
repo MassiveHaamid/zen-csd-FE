@@ -106,20 +106,13 @@ const Login = () => {
             <div className='modal-body'>
               for Student Login use below ID or create new one: <br />
               <span className='mx-5'> Email : reshma9298h@gmail.com</span> <br />
-              <span className='mx-5'> password : reshu@123</span> <br />
-              <hr />
-              for Mentor Login use below ID
-              <br />
-              <span className='mx-5'> Email : mentor@gmail.com</span> <br />
-              <span className='mx-5'> password : mentor@123</span> <br />
+              <span className='mx-5'> password : Z9298@hr</span> <br />
               <hr />
               <span className='text-secondary text-justify'>
                 Note: This Student Dashboard project includes features tailored
                 for students, such as attending classes, submitting tasks,
                 checking the dashboard, submitting webcode and capstone
-                projects, raising queries, submitting porfolio, and requesting
-                leave. Mentor login provides exclusive access for task
-                evaluation only.
+                projects and submitting porfolio.
               </span>
             </div>
             <div className='modal-footer'>

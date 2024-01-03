@@ -35,9 +35,7 @@ export const DataProvider = ({ children }) => {
     const [trigger, setTrigger] = useState(0);
     const [webCode, setWebcode] = useState(null);
     const [capStone, setCapStone] = useState(null);
-    const [query, setQuery] = useState([]);
     const [portfolio, setPortfolio] = useState(null);
-    const [leave, setLeave] = useState([]);
     const [mock, setMock] = useState([]);
 
 
@@ -368,55 +366,8 @@ export const DataProvider = ({ children }) => {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    // handling query request
-    const handleAddQuery = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("student/query", data, config);
-            setTrigger((prev) => prev + 1);
-            setIsLoading(false);
-            toast.success(response.data.message);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
-
-    // handling query request
-    const handleQueryCancel = async (data) => {
-        try {
-            const response = await api.delete(`student/query/${data}`, config);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
-
-    // fetching queries
-    const fetchQuery = async () => {
-        try {
-            const fetchedQuery = await api.get("student/query", config);
-            if (fetchedQuery) {
-                setQuery(fetchedQuery.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+    } 
+    
     // handling portfolio submission
     const handlePortfolio = async (data) => {
 
@@ -443,53 +394,6 @@ export const DataProvider = ({ children }) => {
             const fetchedPortfolio = await api.get("student/portfolio", config);
             if (fetchedPortfolio) {
                 setPortfolio(fetchedPortfolio.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    // handling leave submission
-    const handleAddLeave = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("student/leave", data, config);
-            setIsLoading(false);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
-
-    // handling leave canceling
-    const handleLeaveCancel = async (data) => {
-        try {
-            const response = await api.delete(`student/leave/${data}`, config);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
-
-    // fetching leave data
-    const fetchLeave = async () => {
-        try {
-            const fetchedLeave = await api.get("student/leave", config);
-            if (fetchedLeave) {
-                setLeave(fetchedLeave.data);
             }
         } catch (error) {
             console.log(error);
@@ -563,17 +467,9 @@ export const DataProvider = ({ children }) => {
                 capStone,
                 handleCapStone,
                 fetchCapStone,
-                query,
-                fetchQuery,
-                handleAddQuery,
-                handleQueryCancel,
                 portfolio,
                 fetchPortfolio,
                 handlePortfolio,
-                leave,
-                fetchLeave,
-                handleAddLeave,
-                handleLeaveCancel,
                 mock,
                 fetchMock,
                 handleHead,
