@@ -16,7 +16,7 @@ import Roadmap from './pages/Roadmap/Roadmap';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import DataContext from './context/DataContext';
-import LoggedOut from './pages/LoggedOut/LoggedOut';
+import LoggedOut from './pages/Loggedout/LoggedOut';
 import Signup from './pages/Signup/Signup';
 import Forgot from './pages/Forgot/Forgot';
 import Reset from './pages/Reset/Reset';
@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       {
-        loggedUser && !loggedUser.isMentor &&
+        loggedUser && 
         <>
           <Header />
           <Navbar />
@@ -48,7 +48,7 @@ function App() {
           </>
         }
         {
-          loggedUser && !loggedUser.isMentor &&
+          loggedUser && 
           <>
             <Route path='/' element={<Roadmap />} />
             <Route path='/class' element={<Roadmap />} />
