@@ -75,11 +75,7 @@ export const DataProvider = ({ children }) => {
                 },
             })
             setIsLoading(false);
-            if (response.data.student.isMentor) {
-                navigate("/mentor")
-            } else {
-                navigate("/class");
-            }
+            navigate("/class");
         } catch (error) {
             if (error.response.data.message) {
                 toast.error(error.response.data.message)
