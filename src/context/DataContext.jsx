@@ -65,7 +65,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.post("/student/login", data);
+            const response = await api.post("http://localhost:3001/student/login", data);
             localStorage.setItem("loggedInUser", JSON.stringify(response.data));
             setLoggedUser(response.data.student);
             setToken(response.data.token);
@@ -101,7 +101,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.post("/student/signup", data);
+            const response = await api.post("http://localhost:3001/student/signup", data);
             toast.success(response.data.message);
             toast.success("Check your Mail & Activate");
             setIsLoading(false);
@@ -124,7 +124,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.put("/student/update", data);
+            const response = await api.put("http://localhost:3001/student/update", data);
             const student = response.data.matchedStudent;
             const updatedData = { token, student };
             localStorage.setItem("loggedInUser", JSON.stringify(updatedData));
@@ -152,7 +152,7 @@ export const DataProvider = ({ children }) => {
 
         e.preventDefault();
         try {
-            api.patch(`/student/confirm/${resetToken}`);
+            api.patch(`http://localhost:3001/student/confirm/${resetToken}`);
             toast.success("Account confirmed Successfully");
             setIsLoading(false);
             setTimeout(() => {
@@ -196,7 +196,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.patch(`/student/reset/${resetToken}`, data);
+            const response = await api.patch(`http://localhost:3001/student/reset/${resetToken}`, data);
             setResetToken("");
             toast.success(response.data.message);
             setIsLoading(false);
@@ -240,7 +240,7 @@ export const DataProvider = ({ children }) => {
         };
 
         try {
-            const response = await api.post("/student/task", newTask, config);
+            const response = await api.post("http://localhost:3001/student/task", newTask, config);
             toast.success(response.data.message);
             setBackEndCode("");
             setBackEndURL("");
@@ -260,7 +260,7 @@ export const DataProvider = ({ children }) => {
     // fetching task
     const fetchTask = async () => {
         try {
-            const fetchedTask = await api.get("student/task", config);
+            const fetchedTask = await api.get("http://localhost:3001/student/task", config);
             if (fetchedTask) {
                 setDBTask(fetchedTask.data);
             }
@@ -272,7 +272,7 @@ export const DataProvider = ({ children }) => {
     // fetching all task
     const fetchAllTask = async () => {
         try {
-            const fetchedTask = await api.get("student/alltask");
+            const fetchedTask = await api.get("http://localhost:3001/student/alltask");
             if (fetchedTask) {
                 setDBTask(fetchedTask.data.filter((item) => item.score === "Yet to be graded"));
             }
@@ -287,7 +287,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.patch("/student/task/evaluation", data);
+            const response = await api.patch("http://localhost:3001/student/task/evaluation", data);
             toast.success(response.data.message);
             setIsLoading(false);
         } catch (error) {
@@ -306,7 +306,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.post("student/webcode", data, config);
+            const response = await api.post("http://localhost:3001/student/webcode", data, config);
             toast.success(response.data.message);
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
@@ -323,7 +323,7 @@ export const DataProvider = ({ children }) => {
     //fecthing webcode
     const fetchWebcode = async () => {
         try {
-            const fetchedWebcode = await api.get("student/webcode", config);
+            const fetchedWebcode = await api.get("http://localhost:3001/student/webcode", config);
             if (fetchedWebcode) {
                 setWebcode(fetchedWebcode.data[0]);
             }
@@ -338,7 +338,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.post("student/capstone", data, config);
+            const response = await api.post("http://localhost:3001/student/capstone", data, config);
             toast.success(response.data.message);
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
@@ -355,7 +355,7 @@ export const DataProvider = ({ children }) => {
     // fetching capstone
     const fetchCapStone = async () => {
         try {
-            const fetcheCapStone = await api.get("student/capstone", config);
+            const fetcheCapStone = await api.get("http://localhost:3001/student/capstone", config);
             if (fetcheCapStone) {
                 setCapStone(fetcheCapStone.data[0]);
             }
@@ -370,7 +370,7 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await api.post("student/portfolio", data, config);
+            const response = await api.post("http://localhost:3001/student/portfolio", data, config);
             toast.success(response.data.message);
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
@@ -387,7 +387,7 @@ export const DataProvider = ({ children }) => {
     // fetching portfolio data
     const fetchPortfolio = async () => {
         try {
-            const fetchedPortfolio = await api.get("student/portfolio", config);
+            const fetchedPortfolio = await api.get("http://localhost:3001/student/portfolio", config);
             if (fetchedPortfolio) {
                 setPortfolio(fetchedPortfolio.data[0]);
             }
@@ -399,7 +399,7 @@ export const DataProvider = ({ children }) => {
     // fetching mock data
     const fetchMock = async () => {
         try {
-            const fetchedMock = await api.get("student/mock", config);
+            const fetchedMock = await api.get("http://localhost:3001/student/mock", config);
             if (fetchedMock) {
                 setMock(fetchedMock.data);
             }

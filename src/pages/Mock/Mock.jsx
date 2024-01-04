@@ -3,13 +3,13 @@ import "./mock.css";
 import DataContext from '../../context/DataContext';
 
 const Mock = () => {
-    //
+    
     const { mock, loggedUser, fetchMock } = useContext(DataContext);
 
     useEffect(() => {
         fetchMock();
     }, []);
-    //
+    
     return (
         <section className='mock mt-5'>
             {
