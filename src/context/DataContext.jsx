@@ -8,476 +8,512 @@ import { roadMapData } from "../data";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-    // variables and functions
-    const { width } = useWindowSize();
-    const [head, setHead] = useState("");
-    const [loggedUser, setLoggedUser] = useState("");
-    const [token, setToken] = useState("");
-    const [resetToken, setResetToken] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-    const [config, setConfig] = useState({
+  // variables and functions
+  const { width } = useWindowSize();
+  const [head, setHead] = useState("");
+  const [loggedUser, setLoggedUser] = useState("");
+  const [token, setToken] = useState("");
+  const [resetToken, setResetToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [config, setConfig] = useState({
+    headers: {
+      authorization: `bearer ${token}`,
+    },
+  });
+
+  //for pages
+  const [day, setDay] = useState(0);
+  const [data, setData] = useState(roadMapData[0]);
+  const [flag, setFlag] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const [frontEndCode, setFrontEndCode] = useState("");
+  const [frontEndURL, setFrontEndURL] = useState("");
+  const [backEndCode, setBackEndCode] = useState("");
+  const [backEndURL, setBackEndURL] = useState("");
+  const [DBTask, setDBTask] = useState([]);
+  const [trigger, setTrigger] = useState(0);
+  const [webCode, setWebcode] = useState(null);
+  const [capStone, setCapStone] = useState(null);
+  const [portfolio, setPortfolio] = useState(null);
+  const [mock, setMock] = useState([]);
+
+  // handle signin
+
+  useEffect(() => {
+    const loggedInUserJson = localStorage.getItem("loggedInUser");
+    if (loggedInUserJson) {
+      const user = JSON.parse(loggedInUserJson);
+      setLoggedUser(user.student);
+      setToken(user.token);
+      setConfig({
         headers: {
-            authorization: `bearer ${token}`,
+          authorization: `bearer ${user.token}`,
         },
-    })
+      });
+    }
+    api
+      .get("/")
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+  }, []);
 
-    //for pages
-    const [day, setDay] = useState(0);
-    const [data, setData] = useState(roadMapData[0]);
-    const [flag, setFlag] = useState(true);
-    const [toggle, setToggle] = useState(false);
-    const [frontEndCode, setFrontEndCode] = useState("");
-    const [frontEndURL, setFrontEndURL] = useState("");
-    const [backEndCode, setBackEndCode] = useState("");
-    const [backEndURL, setBackEndURL] = useState("");
-    const [DBTask, setDBTask] = useState([]);
-    const [trigger, setTrigger] = useState(0);
-    const [webCode, setWebcode] = useState(null);
-    const [capStone, setCapStone] = useState(null);
-    const [portfolio, setPortfolio] = useState(null);
-    const [mock, setMock] = useState([]);
+  const handleSignIn = async (data) => {
+    setIsLoading(true);
 
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/login",
+        data
+      );
+      localStorage.setItem("loggedInUser", JSON.stringify(response.data));
+      setLoggedUser(response.data.student);
+      setToken(response.data.token);
+      setConfig({
+        headers: {
+          authorization: `bearer ${response.data.token}`,
+        },
+      });
+      setIsLoading(false);
+      navigate("/class");
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
 
-    // handle signin
+  // handle signout
+  const handleLogout = () => {
+    setToken(null);
+    setLoggedUser(null);
+    setHead("Class");
+    navigate("/");
+    localStorage.clear();
+  };
 
-    useEffect(() => {
-        const loggedInUserJson = localStorage.getItem("loggedInUser");
-        if (loggedInUserJson) {
-            const user = JSON.parse(loggedInUserJson);
-            setLoggedUser(user.student);
-            setToken(user.token)
-            setConfig({
-                headers: {
-                    authorization: `bearer ${user.token}`,
-                },
-            })
-        }
-        api.get("/")
-            .then((res) =>
-                console.log(res.data)
-            ).catch((error) =>
-                console.log(error))
-    }, []);
+  // handle sign up
+  const handleSignUp = async (data) => {
+    setIsLoading(true);
 
-    const handleSignIn = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("http://localhost:3001/student/login", data);
-            localStorage.setItem("loggedInUser", JSON.stringify(response.data));
-            setLoggedUser(response.data.student);
-            setToken(response.data.token);
-            setConfig({
-                headers: {
-                    authorization: `bearer ${response.data.token}`,
-                },
-            })
-            setIsLoading(false);
-            navigate("/class");
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    };
-
-    // handle signout
-    const handleLogout = () => {
-        setToken(null);
-        setLoggedUser(null);
-        setHead("Class")
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/signup",
+        data
+      );
+      toast.success(response.data.message);
+      toast.success("Check your Mail & Activate");
+      setIsLoading(false);
+      setTimeout(() => {
         navigate("/");
-        localStorage.clear();
+      }, 2000);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // handle profile update
+  const handleProfileUpdate = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.put(
+        "https://zcs-d-be.onrender.com/student/update",
+        data
+      );
+      const student = response.data.matchedStudent;
+      const updatedData = { token, student };
+      localStorage.setItem("loggedInUser", JSON.stringify(updatedData));
+      setLoggedUser(updatedData.student);
+      toast.success(response.data.message);
+      setIsLoading(false);
+      setTimeout(() => {
+        navigate("/class");
+      }, 2000);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // handle account confirming
+  const handleConfirm = (e) => {
+    setIsLoading(true);
+
+    e.preventDefault();
+    try {
+      api.patch(`https://zcs-d-be.onrender.com/student/confirm/${resetToken}`);
+      toast.success("Account confirmed Successfully");
+      setIsLoading(false);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // handle forgot password
+  const handleForgot = async (data) => {
+    setIsLoading(true);
+
+    try {
+      await api.put("https://zcs-d-be.onrender.com/student/forgot", data);
+      toast.success("Reset link send to your mail");
+      setIsLoading(false);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // handle password reset
+  const handleReset = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.patch(
+        `https://zcs-d-be.onrender.com/student/reset/${resetToken}`,
+        data
+      );
+      setResetToken("");
+      toast.success(response.data.message);
+      setIsLoading(false);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // handling task submission
+
+  const handleTask = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const config = {
+      headers: {
+        authorization: `bearer ${token}`,
+      },
+    };
+    let check = loggedUser.email ? loggedUser.email : loggedUser.student.email;
+    check = check + day;
+    const newTask = {
+      day,
+      frontEndCode,
+      frontEndURL,
+      backEndCode,
+      backEndURL,
+      task: data.task,
+      title: data.title,
+      check,
     };
 
-    // handle sign up
-    const handleSignUp = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("http://localhost:3001/student/signup", data);
-            toast.success(response.data.message);
-            toast.success("Check your Mail & Activate");
-            setIsLoading(false);
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    };
-
-    // handle profile update
-    const handleProfileUpdate = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.put("http://localhost:3001/student/update", data);
-            const student = response.data.matchedStudent;
-            const updatedData = { token, student };
-            localStorage.setItem("loggedInUser", JSON.stringify(updatedData));
-            setLoggedUser(updatedData.student);
-            toast.success(response.data.message);
-            setIsLoading(false);
-            setTimeout(() => {
-                navigate("/class");
-            }, 2000);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-
-    };
-
-    // handle account confirming
-    const handleConfirm = (e) => {
-
-        setIsLoading(true);
-
-        e.preventDefault();
-        try {
-            api.patch(`http://localhost:3001/student/confirm/${resetToken}`);
-            toast.success("Account confirmed Successfully");
-            setIsLoading(false);
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    };
-
-    // handle forgot password
-    const handleForgot = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            await api.put("/student/forgot", data);
-            toast.success("Reset link send to your mail");
-            setIsLoading(false);
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    };
-
-    // handle password reset
-    const handleReset = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.patch(`http://localhost:3001/student/reset/${resetToken}`, data);
-            setResetToken("");
-            toast.success(response.data.message);
-            setIsLoading(false);
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    };
-
-    // handling task submission
-
-    const handleTask = async (e) => {
-
-        e.preventDefault();
-
-        setIsLoading(true)
-
-        const config = {
-            headers: {
-                authorization: `bearer ${token}`,
-            },
-        };
-        let check = loggedUser.email ? loggedUser.email : loggedUser.student.email;
-        check = check + day;
-        const newTask = {
-            day,
-            frontEndCode,
-            frontEndURL,
-            backEndCode,
-            backEndURL,
-            task: data.task,
-            title: data.title,
-            check,
-        };
-
-        try {
-            const response = await api.post("http://localhost:3001/student/task", newTask, config);
-            toast.success(response.data.message);
-            setBackEndCode("");
-            setBackEndURL("");
-            setFrontEndCode("");
-            setFrontEndURL("");
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/task",
+        newTask,
+        config
+      );
+      toast.success(response.data.message);
+      setBackEndCode("");
+      setBackEndURL("");
+      setFrontEndCode("");
+      setFrontEndURL("");
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
+  };
 
-    // fetching task
-    const fetchTask = async () => {
-        try {
-            const fetchedTask = await api.get("http://localhost:3001/student/task", config);
-            if (fetchedTask) {
-                setDBTask(fetchedTask.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  // fetching task
+  const fetchTask = async () => {
+    try {
+      const fetchedTask = await api.get(
+        "https://zcs-d-be.onrender.com/student/task",
+        config
+      );
+      if (fetchedTask) {
+        setDBTask(fetchedTask.data);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    // fetching all task
-    const fetchAllTask = async () => {
-        try {
-            const fetchedTask = await api.get("http://localhost:3001/student/alltask");
-            if (fetchedTask) {
-                setDBTask(fetchedTask.data.filter((item) => item.score === "Yet to be graded"));
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  // fetching all task
+  const fetchAllTask = async () => {
+    try {
+      const fetchedTask = await api.get(
+        "https://zcs-d-be.onrender.com/student/alltask"
+      );
+      if (fetchedTask) {
+        setDBTask(
+          fetchedTask.data.filter((item) => item.score === "Yet to be graded")
+        );
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    // update task Score
-    const handleTaskScore = async (data) => {
+  // update task Score
+  const handleTaskScore = async (data) => {
+    setIsLoading(true);
 
-        setIsLoading(true);
-
-        try {
-            const response = await api.patch("http://localhost:3001/student/task/evaluation", data);
-            toast.success(response.data.message);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
+    try {
+      const response = await api.patch(
+        "https://zcs-d-be.onrender.com/student/task/evaluation",
+        data
+      );
+      toast.success(response.data.message);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
+  };
 
-    // handling webcode submission
-    const handleWebcode = async (data) => {
+  // handling webcode submission
+  const handleWebcode = async (data) => {
+    setIsLoading(true);
 
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("http://localhost:3001/student/webcode", data, config);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/webcode",
+        data,
+        config
+      );
+      toast.success(response.data.message);
+      setTrigger((prev) => prev + 1);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
+  };
 
-    //fecthing webcode
-    const fetchWebcode = async () => {
-        try {
-            const fetchedWebcode = await api.get("http://localhost:3001/student/webcode", config);
-            if (fetchedWebcode) {
-                setWebcode(fetchedWebcode.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  //fecthing webcode
+  const fetchWebcode = async () => {
+    try {
+      const fetchedWebcode = await api.get(
+        "https://zcs-d-be.onrender.com/student/webcode",
+        config
+      );
+      if (fetchedWebcode) {
+        setWebcode(fetchedWebcode.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    // handling capstone submission
-    const handleCapStone = async (data) => {
+  // handling capstone submission
+  const handleCapStone = async (data) => {
+    setIsLoading(true);
 
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("http://localhost:3001/student/capstone", data, config);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/capstone",
+        data,
+        config
+      );
+      toast.success(response.data.message);
+      setTrigger((prev) => prev + 1);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
+  };
 
-    // fetching capstone
-    const fetchCapStone = async () => {
-        try {
-            const fetcheCapStone = await api.get("http://localhost:3001/student/capstone", config);
-            if (fetcheCapStone) {
-                setCapStone(fetcheCapStone.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    } 
-    
-    // handling portfolio submission
-    const handlePortfolio = async (data) => {
-
-        setIsLoading(true);
-
-        try {
-            const response = await api.post("http://localhost:3001/student/portfolio", data, config);
-            toast.success(response.data.message);
-            setTrigger((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
+  // fetching capstone
+  const fetchCapStone = async () => {
+    try {
+      const fetcheCapStone = await api.get(
+        "https://zcs-d-be.onrender.com/student/capstone",
+        config
+      );
+      if (fetcheCapStone) {
+        setCapStone(fetcheCapStone.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    // fetching portfolio data
-    const fetchPortfolio = async () => {
-        try {
-            const fetchedPortfolio = await api.get("http://localhost:3001/student/portfolio", config);
-            if (fetchedPortfolio) {
-                setPortfolio(fetchedPortfolio.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  // handling portfolio submission
+  const handlePortfolio = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(
+        "https://zcs-d-be.onrender.com/student/portfolio",
+        data,
+        config
+      );
+      toast.success(response.data.message);
+      setTrigger((prev) => prev + 1);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
+  };
 
-    // fetching mock data
-    const fetchMock = async () => {
-        try {
-            const fetchedMock = await api.get("http://localhost:3001/student/mock", config);
-            if (fetchedMock) {
-                setMock(fetchedMock.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  // fetching portfolio data
+  const fetchPortfolio = async () => {
+    try {
+      const fetchedPortfolio = await api.get(
+        "https://zcs-d-be.onrender.com/student/portfolio",
+        config
+      );
+      if (fetchedPortfolio) {
+        setPortfolio(fetchedPortfolio.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const handleHead = (data) => {
-        setHead(data);
-        setToggle(false);
-        localStorage.setItem("head", data);
+  // fetching mock data
+  const fetchMock = async () => {
+    try {
+      const fetchedMock = await api.get(
+        "https://zcs-d-be.onrender.com/student/mock",
+        config
+      );
+      if (fetchedMock) {
+        setMock(fetchedMock.data);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    //
+  };
 
-    return (
-        <DataContext.Provider
-            value={{
-                head,
-                setHead,
-                loggedUser,
-                setLoggedUser,
-                token,
-                setToken,
-                resetToken,
-                setResetToken,
-                handleSignIn,
-                handleLogout,
-                handleSignUp,
-                handleProfileUpdate,
-                handleConfirm,
-                handleForgot,
-                handleReset,
-                isLoading,
-                setIsLoading,
-                width,
-                day,
-                setDay,
-                data,
-                setData,
-                flag,
-                setFlag,
-                frontEndCode,
-                setFrontEndCode,
-                frontEndURL,
-                setFrontEndURL,
-                backEndCode,
-                setBackEndCode,
-                backEndURL,
-                setBackEndURL,
-                handleTask,
-                config,
-                fetchTask,
-                DBTask,
-                setDBTask,
-                trigger,
-                setTrigger,
-                webCode,
-                fetchWebcode,
-                handleWebcode,
-                capStone,
-                handleCapStone,
-                fetchCapStone,
-                portfolio,
-                fetchPortfolio,
-                handlePortfolio,
-                mock,
-                fetchMock,
-                handleHead,
-                toggle,
-                setToggle,
-                fetchAllTask,
-                handleTaskScore
-            }}
-        >
-            {children}
-        </DataContext.Provider>
-    )
+  const handleHead = (data) => {
+    setHead(data);
+    setToggle(false);
+    localStorage.setItem("head", data);
+  };
+  //
+
+  return (
+    <DataContext.Provider
+      value={{
+        head,
+        setHead,
+        loggedUser,
+        setLoggedUser,
+        token,
+        setToken,
+        resetToken,
+        setResetToken,
+        handleSignIn,
+        handleLogout,
+        handleSignUp,
+        handleProfileUpdate,
+        handleConfirm,
+        handleForgot,
+        handleReset,
+        isLoading,
+        setIsLoading,
+        width,
+        day,
+        setDay,
+        data,
+        setData,
+        flag,
+        setFlag,
+        frontEndCode,
+        setFrontEndCode,
+        frontEndURL,
+        setFrontEndURL,
+        backEndCode,
+        setBackEndCode,
+        backEndURL,
+        setBackEndURL,
+        handleTask,
+        config,
+        fetchTask,
+        DBTask,
+        setDBTask,
+        trigger,
+        setTrigger,
+        webCode,
+        fetchWebcode,
+        handleWebcode,
+        capStone,
+        handleCapStone,
+        fetchCapStone,
+        portfolio,
+        fetchPortfolio,
+        handlePortfolio,
+        mock,
+        fetchMock,
+        handleHead,
+        toggle,
+        setToggle,
+        fetchAllTask,
+        handleTaskScore,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
 };
 
 export default DataContext;
