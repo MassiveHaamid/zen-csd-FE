@@ -63,7 +63,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/login",
+        "http://localhost:3001/student/login",
         data
       );
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
@@ -101,7 +101,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/signup",
+        "http://localhost:3001/student/signup",
         data
       );
       toast.success(response.data.message);
@@ -126,7 +126,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.put(
-        "https://zcs-d-be.onrender.com/student/update",
+        "http://localhost:3001/student/update",
         data
       );
       const student = response.data.matchedStudent;
@@ -154,7 +154,7 @@ export const DataProvider = ({ children }) => {
 
     e.preventDefault();
     try {
-      api.patch(`https://zcs-d-be.onrender.com/student/confirm/${resetToken}`);
+      api.patch(`http://localhost:3001/student/confirm/${resetToken}`);
       toast.success("Account confirmed Successfully");
       setIsLoading(false);
       setTimeout(() => {
@@ -175,7 +175,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      await api.put("https://zcs-d-be.onrender.com/student/forgot", data);
+      await api.put("http://localhost:3001/student/forgot", data);
       toast.success("Reset link send to your mail");
       setIsLoading(false);
       setTimeout(() => {
@@ -197,7 +197,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.patch(
-        `https://zcs-d-be.onrender.com/student/reset/${resetToken}`,
+        `http://localhost:3001/student/reset/${resetToken}`,
         data
       );
       setResetToken("");
@@ -243,7 +243,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/task",
+        "http://localhost:3001/student/task",
         newTask,
         config
       );
@@ -267,7 +267,7 @@ export const DataProvider = ({ children }) => {
   const fetchTask = async () => {
     try {
       const fetchedTask = await api.get(
-        "https://zcs-d-be.onrender.com/student/task",
+        "http://localhost:3001/student/task",
         config
       );
       if (fetchedTask) {
@@ -282,7 +282,7 @@ export const DataProvider = ({ children }) => {
   const fetchAllTask = async () => {
     try {
       const fetchedTask = await api.get(
-        "https://zcs-d-be.onrender.com/student/alltask"
+        "http://localhost:3001/student/alltask"
       );
       if (fetchedTask) {
         setDBTask(
@@ -300,7 +300,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.patch(
-        "https://zcs-d-be.onrender.com/student/task/evaluation",
+        "http://localhost:3001/student/task/evaluation",
         data
       );
       toast.success(response.data.message);
@@ -321,7 +321,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/webcode",
+        "http://localhost:3001/student/webcode",
         data,
         config
       );
@@ -342,7 +342,7 @@ export const DataProvider = ({ children }) => {
   const fetchWebcode = async () => {
     try {
       const fetchedWebcode = await api.get(
-        "https://zcs-d-be.onrender.com/student/webcode",
+        "http://localhost:3001/student/webcode",
         config
       );
       if (fetchedWebcode) {
@@ -359,7 +359,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/capstone",
+        "http://localhost:3001/student/capstone",
         data,
         config
       );
@@ -380,7 +380,7 @@ export const DataProvider = ({ children }) => {
   const fetchCapStone = async () => {
     try {
       const fetcheCapStone = await api.get(
-        "https://zcs-d-be.onrender.com/student/capstone",
+        "http://localhost:3001/student/capstone",
         config
       );
       if (fetcheCapStone) {
@@ -397,7 +397,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "https://zcs-d-be.onrender.com/student/portfolio",
+        "http://localhost:3001/student/portfolio",
         data,
         config
       );
@@ -418,7 +418,7 @@ export const DataProvider = ({ children }) => {
   const fetchPortfolio = async () => {
     try {
       const fetchedPortfolio = await api.get(
-        "https://zcs-d-be.onrender.com/student/portfolio",
+        "http://localhost:3001/student/portfolio",
         config
       );
       if (fetchedPortfolio) {
@@ -433,7 +433,7 @@ export const DataProvider = ({ children }) => {
   const fetchMock = async () => {
     try {
       const fetchedMock = await api.get(
-        "https://zcs-d-be.onrender.com/student/mock",
+        "http://localhost:3001/student/mock",
         config
       );
       if (fetchedMock) {

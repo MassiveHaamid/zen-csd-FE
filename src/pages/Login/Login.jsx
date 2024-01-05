@@ -73,13 +73,13 @@ const Login = () => {
               </div>
               <Link
                 to='/forgot'
-                className='btn forgot btn-outline-danger mb-2'
+                className='btn forgot btn-outline-info mb-2'
               >
                 Forgot Password?
               </Link>
               <Link
                 to='/signup'
-                className='btn forgot btn-outline-success'
+                className='btn forgot btn-outline-primary'
               >
                 Not Register? Sign up
               </Link>
