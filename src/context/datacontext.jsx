@@ -2,16 +2,18 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { roadMapData } from "../data";
 import { toast } from "react-toastify";
+import useWindowSize from "../hooks/useWindowSize";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "",
+  baseURL: "http://localhost:3001/",
 });
 
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
   // variables and functions
+  const { width } = useWindowSize();
   const [head, setHead] = useState("");
   const [loggedUser, setLoggedUser] = useState("");
   const [token, setToken] = useState("");
@@ -59,10 +61,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await api.post(
-        "https://caps-be.onrender.com/student/login",
-        data
-      );
+      const response = await api.post("/student/login", data);
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
       setLoggedUser(response.data.student);
       setToken(response.data.token);
@@ -95,12 +94,9 @@ export const DataProvider = ({ children }) => {
   // handle sign up
   const handleSignUp = async (data) => {
     setIsLoading(true);
-
+console.log(handleSignUp);
     try {
-      const response = await api.post(
-        "https://caps-be.onrender.com/student/signup",
-        data
-      );
+      const response = await api.post("/student/signup", data);
       toast.success(response.data.message);
       toast.success("Check your Mail & Activate");
       setIsLoading(false);
@@ -122,10 +118,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await api.put(
-        "https://caps-be.onrender.com/student/update",
-        data
-      );
+      const response = await api.put("/student/update", data);
       const student = response.data.matchedStudent;
       const updatedData = { token, student };
       localStorage.setItem("loggedInUser", JSON.stringify(updatedData));
@@ -151,7 +144,7 @@ export const DataProvider = ({ children }) => {
 
     e.preventDefault();
     try {
-      api.patch(`https://caps-be.onrender.com/student/confirm/${resetToken}`);
+      api.patch(`/student/confirm/${resetToken}`);
       toast.success("Account confirmed Successfully");
       setIsLoading(false);
       setTimeout(() => {
@@ -172,7 +165,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      await api.put("https://caps-be.onrender.com/student/forgot", data);
+      await api.put("/student/forgot", data);
       toast.success("Reset link send to your mail");
       setIsLoading(false);
       setTimeout(() => {
@@ -193,10 +186,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await api.patch(
-        `https://caps-be.onrender.com/student/reset/${resetToken}`,
-        data
-      );
+      const response = await api.patch(`/student/reset/${resetToken}`, data);
       setResetToken("");
       toast.success(response.data.message);
       setIsLoading(false);
@@ -216,6 +206,7 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
+        width,
         head,
         setHead,
         loggedUser,

@@ -13,11 +13,11 @@ const Signup = () => {
   const validate = Yup.object({
     name: Yup.string()
       .max(15, "Must be less than 15 Characters")
-      .min(4, "Must be at least 4 Characters")
+      .min(6, "Must be at least 6 Characters")
       .required("Required"),
     lName: Yup.string()
       .max(15, "Must be less than 15 Characters")
-      .min(1, "Must be at least 1 Characters")
+      .min(6, "Must be at least 6 Characters")
       .required("Required"),
     email: Yup.string().email("Email is Invalid").required("Required"),
     contactNo: Yup.string()
@@ -126,7 +126,10 @@ const Signup = () => {
                         type="password"
                         placeholder="Confirm Password"
                       />
-                      <button type="submit" className="btn-block login_btn">
+                      <button
+                        type="submit"
+                        className="col-12 btn btn-lg btn-block login_btn mt-4 mb-4 d-flex justify-content-center"
+                      >
                         {isLoading ? (
                           <span className="spinner-border text-warning"></span>
                         ) : (
