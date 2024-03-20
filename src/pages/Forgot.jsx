@@ -42,7 +42,10 @@ const Forgot = () => {
                         type="email"
                         placeholder="Enter Register Email Id"
                       />
-                      <button type="submit" className="btn-block login_btn">
+                      <button
+                        type="submit"
+                        className="col-12 btn btn-lg btn-block login_btn mt-4 mb-4 d-flex justify-content-center"
+                      >
                         {isLoading ? (
                           <span className="spinner-border text-warning"></span>
                         ) : (

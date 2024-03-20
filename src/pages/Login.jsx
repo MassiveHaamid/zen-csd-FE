@@ -54,7 +54,7 @@ const Login = () => {
                       />
                       <button
                         type="submit"
-                        className="btn-block login_btn mb-3"
+                        className="col-12 btn btn-lg btn-block login_btn mt-4 mb-4 d-flex justify-content-center"
                       >
                         {isLoading ? (
                           <span className="spinner-border text-warning"></span>
@@ -110,18 +110,18 @@ const Login = () => {
         </div>
       </div>
       <ToastContainer
-                position="top-right"
-                autoClose={1000}
-                transition={Zoom}
-                draggable={false}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                pauseOnHover
-                theme="dark"
-            />
+        position="top-right"
+        autoClose={1000}
+        transition={Zoom}
+        draggable={false}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
