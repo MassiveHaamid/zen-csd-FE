@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import datacontext from "../context/datacontext";
+import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from "formik";
 import TextField from "../components/TextField";
 import * as Yup from "yup";
@@ -88,6 +89,19 @@ const Profile = () => {
       )}
       </Formik>
       </div>
+      <ToastContainer
+                position="top-right"
+                autoClose={1000}
+                transition={Zoom}
+                draggable={false}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                theme="dark"
+            />
       </section>
   );
 };

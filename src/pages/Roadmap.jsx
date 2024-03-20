@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { roadMap, roadMapData, roadMapRes } from "../data";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
 import DataContext from "../context/datacontext";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Roadmap = () => {
   const { isLoading, head, width, day, setDay, data, setData, flag, setFlag, frontEndCode, setFrontEndCode, 
@@ -193,6 +194,19 @@ const Roadmap = () => {
       </div>
       </div>
       </div>
+      <ToastContainer
+                position="top-right"
+                autoClose={1000}
+                transition={Zoom}
+                draggable={false}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                theme="dark"
+            />
       </section>
   );
 };
