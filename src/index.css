@@ -47,7 +47,7 @@
   }
 }
 
-.task__submission {
+.task_submission {
   min-height: calc(100vh - 120px);
   padding: 10px;
 }

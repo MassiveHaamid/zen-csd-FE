@@ -30,7 +30,7 @@ const Capstone = () => {
   });
 
   return (
-    <section className="task__submission">
+    <section className="task_submission">
       <div
         className="task_container mt-5"
         data-bs-toggle="modal"
