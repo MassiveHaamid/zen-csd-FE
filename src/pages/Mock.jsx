@@ -15,7 +15,7 @@ const Mock = () => {
         mock.map((data) => {
           return (
             <div
-              className="task__container"
+              className="task_container"
               key={data._id}
               data-bs-toggle="modal"
               data-bs-target={`#${data._id}`}
