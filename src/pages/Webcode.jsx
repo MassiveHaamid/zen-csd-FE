@@ -28,7 +28,7 @@ const Webcode = () => {
 
   return (
     <section className="task__submission">
-      <div className=" mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
+      <div className="task_container mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
         <div className="d-flex justify-content-between flexCont ">
           <div className="flexCont__data">
             <div className="title weight-500 pb-2">
