@@ -219,7 +219,11 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await api.post("https://caps-be.onrender.com/student/webcode", data, config);
+      const response = await api.post(
+        "https://caps-be.onrender.com/student/webcode",
+        data,
+        config
+      );
       toast.success(response.data.message);
       setTrigger((prev) => prev + 1);
       setIsLoading(false);
@@ -236,7 +240,10 @@ export const DataProvider = ({ children }) => {
   //fecthing webcode
   const fetchWebcode = async () => {
     try {
-      const fetchedWebcode = await api.get("https://caps-be.onrender.com/student/webcode", config);
+      const fetchedWebcode = await api.get(
+        "https://caps-be.onrender.com/student/webcode",
+        config
+      );
       if (fetchedWebcode) {
         setWebcode(fetchedWebcode.data[0]);
       }
@@ -250,7 +257,11 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await api.post("https://caps-be.onrender.com/student/capstone", data, config);
+      const response = await api.post(
+        "https://caps-be.onrender.com/student/capstone",
+        data,
+        config
+      );
       toast.success(response.data.message);
       setTrigger((prev) => prev + 1);
       setIsLoading(false);
@@ -267,7 +278,10 @@ export const DataProvider = ({ children }) => {
   // fetching capstone
   const fetchCapStone = async () => {
     try {
-      const fetcheCapStone = await api.get("https://caps-be.onrender.com/student/capstone", config);
+      const fetcheCapStone = await api.get(
+        "https://caps-be.onrender.com/student/capstone",
+        config
+      );
       if (fetcheCapStone) {
         setCapStone(fetcheCapStone.data[0]);
       }
@@ -279,7 +293,10 @@ export const DataProvider = ({ children }) => {
   // fetching mock data
   const fetchMock = async () => {
     try {
-      const fetchedMock = await api.get("https://caps-be.onrender.com/student/mock", config);
+      const fetchedMock = await api.get(
+        "https://caps-be.onrender.com/student/mock",
+        config
+      );
       if (fetchedMock) {
         setMock(fetchedMock.data);
       }
