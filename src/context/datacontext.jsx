@@ -5,7 +5,7 @@ import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../hooks/useWindowSize";
 
-const DataContext = createContext({});
+const datacontext = createContext({});
 
 export const DataProvider = ({ children }) => {
   // variables and functions
@@ -32,6 +32,9 @@ export const DataProvider = ({ children }) => {
   const [backEndURL, setBackEndURL] = useState("");
   const [DBTask, setDBTask] = useState([]);
   const [trigger, setTrigger] = useState(0);
+  const [webCode, setWebcode] = useState(null);
+  const [capStone, setCapStone] = useState(null);
+  const [mock, setMock] = useState([]);
 
   // handle signin
 
@@ -211,6 +214,86 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // handling webcode submission
+  const handleWebcode = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.post("https://caps-be.onrender.com/student/webcode", data, config);
+      toast.success(response.data.message);
+      setTrigger((prev) => prev + 1);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  //fecthing webcode
+  const fetchWebcode = async () => {
+    try {
+      const fetchedWebcode = await api.get("https://caps-be.onrender.com/student/webcode", config);
+      if (fetchedWebcode) {
+        setWebcode(fetchedWebcode.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // handling capstone submission
+  const handleCapStone = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.post("https://caps-be.onrender.com/student/capstone", data, config);
+      toast.success(response.data.message);
+      setTrigger((prev) => prev + 1);
+      setIsLoading(false);
+    } catch (error) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  // fetching capstone
+  const fetchCapStone = async () => {
+    try {
+      const fetcheCapStone = await api.get("https://caps-be.onrender.com/student/capstone", config);
+      if (fetcheCapStone) {
+        setCapStone(fetcheCapStone.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // fetching mock data
+  const fetchMock = async () => {
+    try {
+      const fetchedMock = await api.get("https://caps-be.onrender.com/student/mock", config);
+      if (fetchedMock) {
+        setMock(fetchedMock.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleHead = (data) => {
+    setHead(data);
+    setToggle(false);
+    localStorage.setItem("head", data);
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -247,6 +330,14 @@ export const DataProvider = ({ children }) => {
         config,
         DBTask,
         setDBTask,
+        webCode,
+        fetchWebcode,
+        handleWebcode,
+        capStone,
+        handleCapStone,
+        fetchCapStone,
+        mock,
+        fetchMock,
         trigger,
         setTrigger,
         toggle,
@@ -258,4 +349,4 @@ export const DataProvider = ({ children }) => {
   );
 };
 
-export default DataContext;
+export default datacontext;
