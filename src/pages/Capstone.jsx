@@ -4,7 +4,7 @@ import { useContext } from "react";
 import dataContext from "../context/datacontext";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from "formik";
-import TextField from "../../components/TextField";
+import TextField from "../components/TextField";
 import * as Yup from "yup";
 
 const Capstone = () => {
