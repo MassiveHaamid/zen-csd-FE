@@ -355,6 +355,7 @@ export const DataProvider = ({ children }) => {
         fetchCapStone,
         mock,
         fetchMock,
+        handleHead,
         trigger,
         setTrigger,
         toggle,
