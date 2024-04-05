@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LOGO from "../assets/logo.png";
 import { useContext } from "react";
-import datacontext from "../context/datacontext";
+import datacontext from "../../context/datacontext";
 
 const Loggedout = () => {
   const { handleLogout } = useContext(datacontext);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import LOGO from "../assets/logo.png";
-import datacontext from "../context/datacontext";
+import datacontext from "../../context/datacontext";
 
 const ConfirmUser = () => {
   const { handleConfirm, setResetToken } = useContext(datacontext);

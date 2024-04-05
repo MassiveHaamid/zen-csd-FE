@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import LOGO from "../assets/logo.png";
 import BANNER from "../assets/banner.png";
 import { Link, useParams } from "react-router-dom";
-import datacontext from "../context/datacontext";
+import datacontext from "../../context/datacontext";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from "formik";
 import TextField from "../components/TextField";

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { roadMap, roadMapData, roadMapRes } from "../data";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
-import DataContext from "../context/datacontext";
+import dataContext from "../../context/datacontext";
 import { ToastContainer, Zoom } from "react-toastify";
 
 const Roadmap = () => {
   const { isLoading, head, width, day, setDay, data, setData, flag, setFlag, frontEndCode, setFrontEndCode, 
     frontEndURL, setFrontEndURL, backEndCode, setBackEndCode, backEndURL, setBackEndURL, handleTask, setHead,
-  } = useContext(DataContext);
+  } = useContext(dataContext);
 
   useEffect(() => {
     setData(roadMapData[day]);

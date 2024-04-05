@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import BarChart from "../components/BarChart";
 import PieChart from "../components/PieChart";
 import { Link } from "react-router-dom";
-import DataContext from "../context/datacontext";
+import dataContext from "../../context/datacontext";
 
 const Dashboard = () => {
-  const { loggedUser, webCode, capStone } = useContext(DataContext);
+  const { loggedUser, webCode, capStone } = useContext(dataContext);
 
   const [taskScoreChartData, setTaskScoreChartData] = useState({
     labels: ["Task Score", "Remaining Score"],

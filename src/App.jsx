@@ -3,9 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import datacontext from "./context/datacontext";
+import Capstone from './pages/Capstone';
 import Dashboard from "./pages/Dashboard";
 import Roadmap from "./pages/Roadmap";
+import Mock from './pages/Mock';
 import Profile from "./pages/Profile";
+import Webcode from './pages/Webcode';
 import Login from "./pages/Login";
 import Loggedout from "./pages/Loggedout";
 import Signup from "./pages/Signup";
@@ -41,6 +44,9 @@ function App() {
             <Route path="/" element={<Roadmap />} />
             <Route path="/class" element={<Roadmap />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path='/webcode' element={<Webcode />} />
+            <Route path='/capstone' element={<Capstone />} />
+            <Route path='/mock' element={<Mock />} />
             <Route path="/profile" element={<Profile />} />
           </>
         )}
