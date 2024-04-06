@@ -25,6 +25,7 @@ export const DataProvider = ({ children }) => {
   //for pages
   const [day, setDay] = useState(0);
   const [data, setData] = useState(roadMapData[0]);
+  const [flag, setFlag] = useState(true);
   const [toggle, setToggle] = useState(false);
   const [frontEndCode, setFrontEndCode] = useState("");
   const [frontEndURL, setFrontEndURL] = useState("");
@@ -336,6 +337,8 @@ export const DataProvider = ({ children }) => {
         setDay,
         data,
         setData,
+        flag,
+        setFlag,
         frontEndCode,
         setFrontEndCode,
         frontEndURL,
