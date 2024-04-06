@@ -1,9 +1,6 @@
-import {
-  BsPieChartFill,
-  BsFillDiagram3Fill,
-  FaFileInvoice,
-} from "react-icons/bs";
+import { BsPieChartFill, BsFillDiagram3Fill } from "react-icons/bs";
 import { BsFillFileEarmarkCodeFill } from "react-icons/bs";
+import { FaFileInvoice } from "react-icons/bs";
 import { MdOutlineDeveloperMode } from "react-icons/md";
 
 /*static data*/
