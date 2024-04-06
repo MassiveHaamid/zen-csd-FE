@@ -28,7 +28,11 @@ const Webcode = () => {
 
   return (
     <section className="task_submission">
-      <div className="task_container mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
+      <div
+        className="task_container mt-5"
+        data-bs-toggle="modal"
+        data-bs-target="#myModal"
+      >
         <div className="d-flex justify-content-between flexCont ">
           <div className="flexCont__data">
             <div className="title weight-500 pb-2">
@@ -40,7 +44,7 @@ const Webcode = () => {
                         justify-content-evenly secondaryGreyTextColor"
             >
               <div className="mx-1">
-                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch}{" "}
+                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch}
                 - Make Up API
               </div>
             </div>
