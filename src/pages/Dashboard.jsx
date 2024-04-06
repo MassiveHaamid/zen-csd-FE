@@ -19,7 +19,6 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    fetchTask();
     fetchWebcode();
     fetchCapStone();
   }, []);
