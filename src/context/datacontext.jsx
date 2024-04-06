@@ -5,8 +5,8 @@ import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../hooks/useWindowSize";
 
-const datacontext = createContext({});
-console.log("datacontext", datacontext);
+const DataContext = createContext({});
+
 export const DataProvider = ({ children }) => {
   // variables and functions
   const { width } = useWindowSize();
@@ -62,7 +62,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "http://localhost:3001/student/login",
+        "https://caps-be.onrender.com/student/login",
         data
       );
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
@@ -100,7 +100,7 @@ export const DataProvider = ({ children }) => {
     console.log(handleSignUp);
     try {
       const response = await api.post(
-        "http://localhost:3001/student/signup",
+        "https://caps-be.onrender.com/student/signup",
         data
       );
       toast.success(response.data.message);
@@ -125,7 +125,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.put(
-        "http://localhost:3001/student/update",
+        "https://caps-be.onrender.com/student/update",
         data
       );
       const student = response.data.matchedStudent;
@@ -153,7 +153,7 @@ export const DataProvider = ({ children }) => {
 
     e.preventDefault();
     try {
-      api.patch(`http://localhost:3001/student/confirm/${resetToken}`);
+      api.patch(`https://caps-be.onrender.com/student/confirm/${resetToken}`);
       toast.success("Account confirmed Successfully");
       setIsLoading(false);
       setTimeout(() => {
@@ -174,7 +174,7 @@ export const DataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      await api.put("http://localhost:3001/student/forgot", data);
+      await api.put("https://caps-be.onrender.com/student/forgot", data);
       toast.success("Reset link send to your mail");
       setIsLoading(false);
       setTimeout(() => {
@@ -196,7 +196,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.patch(
-        `http://localhost:3001/student/reset/${resetToken}`,
+        `https://caps-be.onrender.com/student/reset/${resetToken}`,
         data
       );
       setResetToken("");
@@ -221,7 +221,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "http://localhost:3001/student/webcode",
+        "https://caps-be.onrender.com/student/webcode",
         data,
         config
       );
@@ -242,7 +242,7 @@ export const DataProvider = ({ children }) => {
   const fetchWebcode = async () => {
     try {
       const fetchedWebcode = await api.get(
-        "http://localhost:3001/student/webcode",
+        "https://caps-be.onrender.com/student/webcode",
         config
       );
       if (fetchedWebcode) {
@@ -259,7 +259,7 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await api.post(
-        "http://localhost:3001/student/capstone",
+        "https://caps-be.onrender.com/student/capstone",
         data,
         config
       );
@@ -280,7 +280,7 @@ export const DataProvider = ({ children }) => {
   const fetchCapStone = async () => {
     try {
       const fetcheCapStone = await api.get(
-        "http://localhost:3001/student/capstone",
+        "https://caps-be.onrender.com/student/capstone",
         config
       );
       if (fetcheCapStone) {
@@ -295,7 +295,7 @@ export const DataProvider = ({ children }) => {
   const fetchMock = async () => {
     try {
       const fetchedMock = await api.get(
-        "http://localhost:3001/student/mock",
+        "https://caps-be.onrender.com/student/mock",
         config
       );
       if (fetchedMock) {
@@ -370,4 +370,4 @@ export const DataProvider = ({ children }) => {
   );
 };
 
-export default datacontext;
+export default DataContext;
