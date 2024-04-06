@@ -26,7 +26,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://caps-be.onrender.com/api/tasks");
+        const response = await fetch("http://localhost:3001/api/tasks");
         const data = await response.json();
 
         const totalScore = data.reduce((sum, task) => sum + task.score, 0);
@@ -67,9 +67,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         // Fetch attendance data from an API
-        const response = await fetch(
-          "https://caps-be.onrender.com/api/attendance"
-        );
+        const response = await fetch("http://localhost:3001/api/attendance");
         const data = await response.json();
 
         // Update attendanceChartData with the fetched data
@@ -93,7 +91,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://caps-be.onrender.com/api/tasks");
+        const response = await fetch("http://localhost:3001/api/tasks");
         const data = await response.json();
 
         setTaskScoreChartData({
@@ -118,7 +116,7 @@ const Dashboard = () => {
   // Function to update task score data
   const updateTaskScoreData = async () => {
     try {
-      const response = await fetch("https://caps-be.onrender.com/api/tasks", {
+      const response = await fetch("http://localhost:3001/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
