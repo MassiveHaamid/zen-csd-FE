@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import dataContext from "../context/datacontext";
 
 const Dashboard = () => {
-  const { loggedUser, webCode, capStone } = useContext(dataContext);
+  const { loggedUser, webCode, fetchWebcode, capStone, fetchCapStone } =
+    useContext(dataContext);
 
   const [taskScoreChartData, setTaskScoreChartData] = useState({
     labels: ["Task Score", "Remaining Score"],
@@ -16,6 +17,12 @@ const Dashboard = () => {
       },
     ],
   });
+
+  useEffect(() => {
+    fetchTask();
+    fetchWebcode();
+    fetchCapStone();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
